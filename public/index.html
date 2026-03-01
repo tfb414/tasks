@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Tasks</title>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@picocss/pico@2/css/pico.min.css">
+  <style>
+    :root {
+      --task-gap: 0.75rem;
+    }
+
+    body {
+      padding: 1rem;
+      max-width: 600px;
+      margin: 0 auto;
+    }
+
+    h1 {
+      margin-bottom: 1rem;
+      font-size: 1.5rem;
+    }
+
+    /* Task form */
+    #task-form {
+      margin-bottom: 1.5rem;
+    }
+
+    #task-form input,
+    #task-form textarea {
+      margin-bottom: 0.5rem;
+    }
+
+    #task-form textarea {
+      min-height: 60px;
+      resize: vertical;
+    }
+
+    #task-form button {
+      width: 100%;
+      padding: 0.75rem;
+      font-size: 1rem;
+    }
+
+    /* Task list */
+    #task-list {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+    }
+
+    .task-item {
+      display: flex;
+      align-items: flex-start;
+      gap: 0.75rem;
+      padding: 0.75rem;
+      border-bottom: 1px solid var(--pico-muted-border-color);
+    }
+
+    .task-item:last-child {
+      border-bottom: none;
+    }
+
+    .task-item input[type="checkbox"] {
+      margin-top: 0.25rem;
+      min-width: 22px;
+      min-height: 22px;
+      cursor: pointer;
+    }
+
+    .task-content {
+      flex: 1;
+      min-width: 0;
+    }
+
+    .task-title {
+      font-weight: 500;
+      word-break: break-word;
+    }
+
+    .task-notes {
+      font-size: 0.85rem;
+      color: var(--pico-muted-color);
+      margin-top: 0.25rem;
+      word-break: break-word;
+      white-space: pre-wrap;
+    }
+
+    .task-item.completed .task-title {
+      text-decoration: line-through;
+      opacity: 0.6;
+    }
+
+    .task-item.completed .task-notes {
+      opacity: 0.4;
+    }
+
+    .task-delete {
+      background: none;
+      border: none;
+      color: var(--pico-muted-color);
+      cursor: pointer;
+      padding: 0.25rem 0.5rem;
+      font-size: 1.2rem;
+      line-height: 1;
+      border-radius: 4px;
+      min-width: 44px;
+      min-height: 44px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .task-delete:hover {
+      color: var(--pico-del-color, #c62828);
+      background: rgba(198, 40, 40, 0.1);
+    }
+
+    .empty-state {
+      text-align: center;
+      padding: 2rem 1rem;
+      color: var(--pico-muted-color);
+    }
+
+    details summary {
+      font-size: 0.9rem;
+      cursor: pointer;
+      color: var(--pico-muted-color);
+      margin-bottom: 0.5rem;
+    }
+  </style>
+</head>
+<body>
+  <main>
+    <h1>Tasks</h1>
+
+    <form id="task-form">
+      <input type="text" id="task-title" placeholder="What needs to be done?" required autofocus>
+      <details>
+        <summary>Add notes</summary>
+        <textarea id="task-notes" placeholder="Optional notes..."></textarea>
+      </details>
+      <button type="submit">Add Task</button>
+    </form>
+
+    <ul id="task-list"></ul>
+  </main>
+
+  <script src="app.js"></script>
+</body>
+</html>
